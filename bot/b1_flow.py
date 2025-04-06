@@ -33,11 +33,6 @@ async def reading_q4(msg: Message, state: FSMContext):
     await msg.answer("📘 Q4: What do companies need to invest in?", reply_markup=kb.reading_q4_kb)
     await state.set_state(Survey.reading_q4)
 
-# @router.message(Survey.reading_q4)
-# async def ask_connection(msg: Message, state: FSMContext):
-#     await state.update_data(reading_q4=msg.text)
-#     await msg.answer("💬 What can help maintain a sense of connection and teamwork in remote teams?")
-#     await state.set_state(Survey.connection)
 
 @router.message(Survey.reading_q4)
 async def ask_essay1(msg: Message, state: FSMContext):
