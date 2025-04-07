@@ -44,3 +44,45 @@ class Survey(StatesGroup):
     b2_g4 = State()
     b2_g5 = State()
     b2_voice = State()
+
+     # PreA1 branch
+
+    pre_a1_read_confirm = State()
+
+    pre_a1_q1 = State()
+    pre_a1_q2 = State()
+    pre_a1_q3 = State()
+    pre_a1_q4 = State()
+    pre_a1_q5 = State()
+
+    pre_a1_voice = State()
+
+    pre_a1_g1 = State()
+    pre_a1_g2 = State()
+    pre_a1_g3 = State()
+    pre_a1_g4 = State()
+    pre_a1_g5 = State()
+    pre_a1_g6 = State()
+    pre_a1_g7 = State()
+    pre_a1_g8 = State()
+    pre_a1_g9 = State()
+    pre_a1_g10 = State()
+
+    # A1 branch
+
+    a1_q1 = State()
+    a1_q2 = State()
+    a1_q3 = State()
+    a1_q4 = State()
+    a1_q5 = State()
+    a1_voice = State()
+    a1_g1 = State()
+    a1_g2 = State()
+    a1_g3 = State()
+    a1_g4 = State()
+    a1_g5 = State()
+    a1_open_1 = State()
+    a1_open_2 = State()
+    a1_open_3 = State()
+    a1_open_4 = State()
+    a1_open_5 = State()

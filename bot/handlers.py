@@ -29,6 +29,12 @@ router.include_router(b1_flow.router)
 from bot import b2_flow  # імпортуємо FSM-гілку B2
 router.include_router(b2_flow.router)  # підключаємо до загального router
 
+from bot import pre_a1_flow
+router.include_router(pre_a1_flow.router)
+
+from bot import a1_flow
+router.include_router(a1_flow.router)
+
 
 
 def register_handlers(dp):
@@ -99,42 +105,6 @@ async def ask_level(msg: Message, state: FSMContext):
     await msg.answer("📊 На твою думку, який в тебе рівень англійської?", reply_markup=kb.level_kb)
     await state.set_state(Survey.level)
 
-# @router.message(Survey.level)
-# async def handle_level(msg: Message, state: FSMContext):
-#     await state.update_data(level=msg.text)
-#     # 
-#     if "B1" in msg.text:
-#         await msg.answer("📖 Read the following passage and answer the questions below:\n\n"
-#                          "⬇️"
-#                          "In recent years, the popularity of remote work has grown significantly. "
-#                          "With advances in technology and communication tools, more companies are offering employees the flexibility to work from home or other locations. "
-#                          "This shift has been driven by several factors, including the desire for a better work-life balance, reduced commuting time, and the ability to attract talent from a broader geographic area.\n\n"
-                        
-#                          "Remote work offers numerous benefits for both employers and employees. "
-#                          "Employees often report higher job satisfaction, increased productivity, and reduced stress levels. "
-#                          "Employers can save on office space and related expenses, and they can also access a larger pool of candidates for open positions.\n\n"
-                  
-#                          "However, remote work also presents challenges."
-#                          "Some employees may feel isolated or disconnected from their colleagues, which can impact collaboration and team cohesion. "
-#                          "Additionally, managing remote teams requires different skills and strategies compared to traditional office settings."
-                         
-#                          )
-        
-#         await msg.answer(
-#             "✅ Натисни кнопку 'I read the text' коли прочитаєш.",
-#               reply_markup=ReplyKeyboardMarkup(
-#             keyboard=[[KeyboardButton(text="I read the text")]], 
-#             resize_keyboard=True,
-#             one_time_keyboard=True
-#         ))
-#         await state.set_state(Survey.read_confirm)
-#     else:
-#         # Якщо не B1 – просто зберігаємо відповіді
-#         data = await state.get_data()
-#         save_to_sheet(data)
-#         await msg.answer("✅ Дякуємо за ваші відповіді!")
-#         await state.clear()
-
 @router.message(Survey.level)
 async def handle_level(msg: Message, state: FSMContext):
     await state.update_data(level=msg.text)
@@ -166,6 +136,10 @@ async def handle_level(msg: Message, state: FSMContext):
     elif "B2" in msg.text:
         from bot import b2_flow
         await b2_flow.start_b2_flow(msg, state)
+
+    elif "A1" in msg.text:
+       await start_a1(msg, state)
+
 
     else:
         # Інші рівні — заглушка або просто зберегти
